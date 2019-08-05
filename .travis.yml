@@ -9,13 +9,14 @@ before_install:
 script: 
         - docker run -e CI=true lmessi4/react-test npm test
 
-after_sucess:
+after_success:
         - docker build -t lmessi4/multi-client ./client
         - docker build -t lmessi4/multi-nginx ./nginx
         - docker build -t lmessi4/multi-server ./server
         - docker build -t lmessi4/multi-worker ./worker
         # Log in to the docker CLI
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+        # Pushing images to docker hub
         - docker push lmessi4/multi-client
         - docker push lmessi4/multi-nginx
         - docker push lmessi4/multi-server
