@@ -4,20 +4,20 @@ services:
         - docker
 
 before_install:
-        - docker build -t lmessi4/react-test -f ./client/Dockerfile.dev ./client
+        - docker build -t walighallab/react-test -f ./client/Dockerfile.dev ./client
 
 script: 
-        - docker run -e CI=true lmessi4/react-test npm test
+        - docker run -e CI=true walighallab/react-test npm test
 
 after_success:
-        - docker build -t lmessi4/multi-client ./client
-        - docker build -t lmessi4/multi-nginx ./nginx
-        - docker build -t lmessi4/multi-server ./server
-        - docker build -t lmessi4/multi-worker ./worker
+        - docker build -t walighallab/multi-client ./client
+        - docker build -t walighallab/multi-nginx ./nginx
+        - docker build -t walighallab/multi-server ./server
+        - docker build -t walighallab/multi-worker ./worker
         # Log in to the docker CLI
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
         # Pushing images to docker hub
-        - docker push lmessi4/multi-client
-        - docker push lmessi4/multi-nginx
-        - docker push lmessi4/multi-server
-        - docker push lmessi4/multi-worker
+        - docker push walighallab/multi-client
+        - docker push walighallab/multi-nginx
+        - docker push walighallab/multi-server
+        - docker push walighallab/multi-worker
