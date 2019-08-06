@@ -24,7 +24,7 @@
 		},
 		{
 			"name": "nginx",
-			"image": "walidghallab/nginx",
+			"image": "walidghallab/multi-nginx",
 			"essential": true,
 			"portMappings": [
 				{
